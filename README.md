@@ -2,7 +2,8 @@
 Minitracker: A roblox game stats tracker.
 
 
-This script manages tasks for updating and generating data on a regular schedule. It uses Python to handle time-based execution and ensures reliability even if traditional cron jobs fail to work as expected.
+This 'thing' will go to the roblox api and grabb data stuff cuz I was bored and wanted something like Rolimons for smaller games.
+This was generated with CHatGPT while fixes and other things less improtant I did
 
 ---
 
