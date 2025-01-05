@@ -1,19 +1,27 @@
+import os
 import time
 import subprocess
 from datetime import datetime
 
+# Get the directory of the current script
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+
 def run_daily_script():
     # This function will run the daily script
+    daily_script_path = os.path.join(SCRIPT_DIR, "app_daily.sh")
     print("Running daily script...")
-    subprocess.run(["/bin/bash", "/home/server/tracker/app_daily.sh"])
+    subprocess.run(["/bin/bash", daily_script_path])
 
 def run_regular_scripts():
     # This function runs the fetch and generate scripts
+    fetch_data_path = os.path.join(SCRIPT_DIR, "fetch_data.py")
+    generate_html_path = os.path.join(SCRIPT_DIR, "generate_html.py")
+    
     print("Running fetch_data.py...")
-    subprocess.run(["python3", "/home/server/tracker/fetch_data.py"])
+    subprocess.run(["python3", fetch_data_path])
     
     print("Running generate_html.py...")
-    subprocess.run(["python3", "/home/server/tracker/generate_html.py"])
+    subprocess.run(["python3", generate_html_path])
 
 def main():
     while True:
