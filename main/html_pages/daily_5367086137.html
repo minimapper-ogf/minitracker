@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minitrcker: [🎄CHRISTMAS🎄] Doomspire Defense  Stats</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+        }
+        header {
+            background-color: #0056b3;
+            color: #fff;
+            padding: 20px 0;
+            margin-bottom: 20px;
+        }
+        header h1 {
+            margin: 0;
+        }
+        button {
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #0056b3;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #003d80;
+        }
+        .chart-container {
+            width: 80%;
+            height: 400px;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>[🎄CHRISTMAS🎄] Doomspire Defense  Stats (Normal)</h1>
+    </header>
+    <button onclick="window.location.href='index.html';">Back to Home</button>
+    <button onclick="goToDaily()">Daily</button>
+
+    <!-- New Charts -->
+    <div id="playing-chart" class="chart-container"></div>
+    <div id="visits-chart" class="chart-container"></div>
+    <div id="visitschange-chart" class="chart-container"></div>
+    <div id="favorites-chart" class="chart-container"></div>
+    <div id="favoritedchange-chart" class="chart-container"></div>
+    <div id="upvotesdownvotes-chart" class="chart-container"></div> <!-- Merged chart -->
+    <div id="voteschange-chart" class="chart-container"></div>
+    <div id="upvotespercentage-chart" class="chart-container"></div>
+
+    <script>
+	function goToDaily() {
+    		// Get the current file's name (excluding any path)
+    		const currentFilename = window.location.pathname.split('/').pop();
+    
+    		// Prepend "daily_" to the filename
+    		const dailyFilename = `daily_${currentFilename}`;
+    
+    		// Redirect to the new page
+    		window.location.href = dailyFilename;
+		}
+        document.addEventListener("DOMContentLoaded", function() {
+            // Playing chart
+            Highcharts.chart('playing-chart', {
+                chart: { type: 'line' },
+                title: { text: 'Playing Stats Over Time' },
+                xAxis: { categories: ["2025-01-04 05:42:59", "2025-01-04 07:13:58", "2025-01-04 17:12:42"] },
+                yAxis: { title: { text: 'Playing' } },
+                series: [{ name: 'Playing', data: [1021, 946, 936] }]
+            });
+
+            // Visits chart
+            Highcharts.chart('visits-chart', {
+                chart: { type: 'line' },
+                title: { text: 'Visits Stats Over Time' },
+                xAxis: { categories: ["2025-01-04 05:42:59", "2025-01-04 07:13:58", "2025-01-04 17:12:42"] },
+                yAxis: { title: { text: 'Visits' } },
+                series: [{ name: 'Visits', data: [46491557, 46498777, 46521298] }]
+            });
+
+            // Visits change chart (Vertical bar chart)
+            Highcharts.chart('visitschange-chart', {
+                chart: { type: 'column' },
+                title: { text: 'Visits Change Over Time' },
+                xAxis: { categories: ["2025-01-04 05:42:59", "2025-01-04 07:13:58", "2025-01-04 17:12:42"] },
+                yAxis: { title: { text: 'Visits Change' } },
+                series: [{ name: 'Visits Change', data: [0, 7220, 22521] }]
+            });
+
+            // Favorites chart
+            Highcharts.chart('favorites-chart', {
+                chart: { type: 'line' },
+                title: { text: 'Favorites Stats Over Time' },
+                xAxis: { categories: ["2025-01-04 05:42:59", "2025-01-04 07:13:58", "2025-01-04 17:12:42"] },
+                yAxis: { title: { text: 'Favorites' } },
+                series: [{ name: 'Favorites', data: [66292, 66304, 66329] }]
+            });
+
+            // Favorited change chart (Vertical bar chart)
+            Highcharts.chart('favoritedchange-chart', {
+                chart: { type: 'column' },
+                title: { text: 'Favorites Change Over Time' },
+                xAxis: { categories: ["2025-01-04 05:42:59", "2025-01-04 07:13:58", "2025-01-04 17:12:42"] },
+                yAxis: { title: { text: 'Favorites Change' } },
+                series: [{ name: 'Favorites Change', data: [0, 12, 25] }]
+            });
+
+            // Merged Upvotes and Downvotes chart
+            Highcharts.chart('upvotesdownvotes-chart', {
+                chart: { type: 'line' },
+                title: { text: 'Upvotes and Downvotes Stats Over Time' },
+                xAxis: { categories: ["2025-01-04 05:42:59", "2025-01-04 07:13:58", "2025-01-04 17:12:42"] },
+                yAxis: { title: { text: 'Votes' } },
+                series: [
+                    { name: 'Upvotes', data: [36273, 36277, 36294] },
+                    { name: 'Downvotes', data: [3658, 3659, 3661] }
+                ]
+            });
+
+            // Votes change chart (Vertical bar chart)
+            Highcharts.chart('voteschange-chart', {
+                chart: { type: 'column' },
+                title: { text: 'Votes Change Over Time' },
+                xAxis: { categories: ["2025-01-04 05:42:59", "2025-01-04 07:13:58", "2025-01-04 17:12:42"] },
+                yAxis: { title: { text: 'Votes Change' } },
+                series: [
+                    { name: 'Upvotes Change', data: [0, 4, 17] },
+                    { name: 'Downvotes Change', data: [0, 1, 2] }
+                ]
+            });
+
+            // Upvotes percentage chart
+            Highcharts.chart('upvotespercentage-chart', {
+                chart: { type: 'line' },
+                title: { text: 'Upvotes Percentage Over Time' },
+                xAxis: { categories: ["2025-01-04 05:42:59", "2025-01-04 07:13:58", "2025-01-04 17:12:42"] },
+                yAxis: { title: { text: 'Upvotes Percentage' } },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.y:.3f}%</b>'
+                },
+                series: [{
+                    name: 'Upvotes Percentage',
+                    data: [90.8391976158874, 90.8378405448718, 90.83719184082092]
+                }]
+            });
+        });
+    </script>
+</body>
+</html>

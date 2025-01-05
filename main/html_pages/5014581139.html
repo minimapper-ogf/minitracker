@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minitrcker: Cart Ride into Dave and Bambi 2 Stats</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+        }
+        header {
+            background-color: #0056b3;
+            color: #fff;
+            padding: 20px 0;
+            margin-bottom: 20px;
+        }
+        header h1 {
+            margin: 0;
+        }
+        button {
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #0056b3;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #003d80;
+        }
+        .chart-container {
+            width: 80%;
+            height: 400px;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Cart Ride into Dave and Bambi 2 Stats (Normal)</h1>
+    </header>
+    <button onclick="window.location.href='index.html';">Back to Home</button>
+    <button onclick="goToDaily()">Daily</button>
+
+    <!-- New Charts -->
+    <div id="playing-chart" class="chart-container"></div>
+    <div id="visits-chart" class="chart-container"></div>
+    <div id="visitschange-chart" class="chart-container"></div>
+    <div id="favorites-chart" class="chart-container"></div>
+    <div id="favoritedchange-chart" class="chart-container"></div>
+    <div id="upvotesdownvotes-chart" class="chart-container"></div> <!-- Merged chart -->
+    <div id="voteschange-chart" class="chart-container"></div>
+    <div id="upvotespercentage-chart" class="chart-container"></div>
+
+    <script>
+	function goToDaily() {
+    		// Get the current file's name (excluding any path)
+    		const currentFilename = window.location.pathname.split('/').pop();
+    
+    		// Prepend "daily_" to the filename
+    		const dailyFilename = `daily_${currentFilename}`;
+    
+    		// Redirect to the new page
+    		window.location.href = dailyFilename;
+		}
+        document.addEventListener("DOMContentLoaded", function() {
+            // Playing chart
+            Highcharts.chart('playing-chart', {
+                chart: { type: 'line' },
+                title: { text: 'Playing Stats Over Time' },
+                xAxis: { categories: ["2025-01-04 20:50:00", "2025-01-04 21:00:00", "2025-01-04 21:10:01", "2025-01-04 21:20:01", "2025-01-04 21:30:01", "2025-01-04 21:40:01", "2025-01-04 21:50:01", "2025-01-04 22:00:00", "2025-01-04 22:10:00", "2025-01-04 22:20:00", "2025-01-04 22:30:00", "2025-01-04 22:40:01", "2025-01-04 22:50:01", "2025-01-04 23:00:01", "2025-01-04 23:10:01", "2025-01-04 23:20:01", "2025-01-04 23:30:01", "2025-01-04 23:40:00", "2025-01-04 23:50:00", "2025-01-05 00:00:01", "2025-01-05 00:10:01", "2025-01-05 00:20:01", "2025-01-05 00:30:00", "2025-01-05 00:40:00"] },
+                yAxis: { title: { text: 'Playing' } },
+                series: [{ name: 'Playing', data: [4, 4, 2, 3, 4, 1, 7, 6, 4, 7, 4, 4, 3, 1, 4, 10, 6, 6, 8, 6, 6, 4, 4, 3] }]
+            });
+
+            // Visits chart
+            Highcharts.chart('visits-chart', {
+                chart: { type: 'line' },
+                title: { text: 'Visits Stats Over Time' },
+                xAxis: { categories: ["2025-01-04 20:50:00", "2025-01-04 21:00:00", "2025-01-04 21:10:01", "2025-01-04 21:20:01", "2025-01-04 21:30:01", "2025-01-04 21:40:01", "2025-01-04 21:50:01", "2025-01-04 22:00:00", "2025-01-04 22:10:00", "2025-01-04 22:20:00", "2025-01-04 22:30:00", "2025-01-04 22:40:01", "2025-01-04 22:50:01", "2025-01-04 23:00:01", "2025-01-04 23:10:01", "2025-01-04 23:20:01", "2025-01-04 23:30:01", "2025-01-04 23:40:00", "2025-01-04 23:50:00", "2025-01-05 00:00:01", "2025-01-05 00:10:01", "2025-01-05 00:20:01", "2025-01-05 00:30:00", "2025-01-05 00:40:00"] },
+                yAxis: { title: { text: 'Visits' } },
+                series: [{ name: 'Visits', data: [325032, 325035, 325040, 325041, 325043, 325047, 325049, 325057, 325066, 325075, 325084, 325091, 325094, 325097, 325098, 325107, 325114, 325128, 325133, 325141, 325145, 325154, 325157, 325161] }]
+            });
+
+            // Visits change chart (Vertical bar chart)
+            Highcharts.chart('visitschange-chart', {
+                chart: { type: 'column' },
+                title: { text: 'Visits Change Over Time' },
+                xAxis: { categories: ["2025-01-04 20:50:00", "2025-01-04 21:00:00", "2025-01-04 21:10:01", "2025-01-04 21:20:01", "2025-01-04 21:30:01", "2025-01-04 21:40:01", "2025-01-04 21:50:01", "2025-01-04 22:00:00", "2025-01-04 22:10:00", "2025-01-04 22:20:00", "2025-01-04 22:30:00", "2025-01-04 22:40:01", "2025-01-04 22:50:01", "2025-01-04 23:00:01", "2025-01-04 23:10:01", "2025-01-04 23:20:01", "2025-01-04 23:30:01", "2025-01-04 23:40:00", "2025-01-04 23:50:00", "2025-01-05 00:00:01", "2025-01-05 00:10:01", "2025-01-05 00:20:01", "2025-01-05 00:30:00", "2025-01-05 00:40:00"] },
+                yAxis: { title: { text: 'Visits Change' } },
+                series: [{ name: 'Visits Change', data: [0, 3, 5, 1, 2, 4, 2, 8, 9, 9, 9, 7, 3, 3, 1, 9, 7, 14, 5, 8, 4, 9, 3, 4] }]
+            });
+
+            // Favorites chart
+            Highcharts.chart('favorites-chart', {
+                chart: { type: 'line' },
+                title: { text: 'Favorites Stats Over Time' },
+                xAxis: { categories: ["2025-01-04 20:50:00", "2025-01-04 21:00:00", "2025-01-04 21:10:01", "2025-01-04 21:20:01", "2025-01-04 21:30:01", "2025-01-04 21:40:01", "2025-01-04 21:50:01", "2025-01-04 22:00:00", "2025-01-04 22:10:00", "2025-01-04 22:20:00", "2025-01-04 22:30:00", "2025-01-04 22:40:01", "2025-01-04 22:50:01", "2025-01-04 23:00:01", "2025-01-04 23:10:01", "2025-01-04 23:20:01", "2025-01-04 23:30:01", "2025-01-04 23:40:00", "2025-01-04 23:50:00", "2025-01-05 00:00:01", "2025-01-05 00:10:01", "2025-01-05 00:20:01", "2025-01-05 00:30:00", "2025-01-05 00:40:00"] },
+                yAxis: { title: { text: 'Favorites' } },
+                series: [{ name: 'Favorites', data: [3521, 3521, 3521, 3521, 3521, 3521, 3521, 3521, 3521, 3521, 3521, 3521, 3521, 3521, 3521, 3521, 3520, 3520, 3520, 3520, 3520, 3521, 3521, 3521] }]
+            });
+
+            // Favorited change chart (Vertical bar chart)
+            Highcharts.chart('favoritedchange-chart', {
+                chart: { type: 'column' },
+                title: { text: 'Favorites Change Over Time' },
+                xAxis: { categories: ["2025-01-04 20:50:00", "2025-01-04 21:00:00", "2025-01-04 21:10:01", "2025-01-04 21:20:01", "2025-01-04 21:30:01", "2025-01-04 21:40:01", "2025-01-04 21:50:01", "2025-01-04 22:00:00", "2025-01-04 22:10:00", "2025-01-04 22:20:00", "2025-01-04 22:30:00", "2025-01-04 22:40:01", "2025-01-04 22:50:01", "2025-01-04 23:00:01", "2025-01-04 23:10:01", "2025-01-04 23:20:01", "2025-01-04 23:30:01", "2025-01-04 23:40:00", "2025-01-04 23:50:00", "2025-01-05 00:00:01", "2025-01-05 00:10:01", "2025-01-05 00:20:01", "2025-01-05 00:30:00", "2025-01-05 00:40:00"] },
+                yAxis: { title: { text: 'Favorites Change' } },
+                series: [{ name: 'Favorites Change', data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 0] }]
+            });
+
+            // Merged Upvotes and Downvotes chart
+            Highcharts.chart('upvotesdownvotes-chart', {
+                chart: { type: 'line' },
+                title: { text: 'Upvotes and Downvotes Stats Over Time' },
+                xAxis: { categories: ["2025-01-04 20:50:00", "2025-01-04 21:00:00", "2025-01-04 21:10:01", "2025-01-04 21:20:01", "2025-01-04 21:30:01", "2025-01-04 21:40:01", "2025-01-04 21:50:01", "2025-01-04 22:00:00", "2025-01-04 22:10:00", "2025-01-04 22:20:00", "2025-01-04 22:30:00", "2025-01-04 22:40:01", "2025-01-04 22:50:01", "2025-01-04 23:00:01", "2025-01-04 23:10:01", "2025-01-04 23:20:01", "2025-01-04 23:30:01", "2025-01-04 23:40:00", "2025-01-04 23:50:00", "2025-01-05 00:00:01", "2025-01-05 00:10:01", "2025-01-05 00:20:01", "2025-01-05 00:30:00", "2025-01-05 00:40:00"] },
+                yAxis: { title: { text: 'Votes' } },
+                series: [
+                    { name: 'Upvotes', data: [1169, 1169, 1169, 1169, 1169, 1169, 1169, 1169, 1169, 1169, 1169, 1169, 1169, 1169, 1169, 1169, 1168, 1168, 1168, 1168, 1168, 1168, 1168, 1168] },
+                    { name: 'Downvotes', data: [125, 125, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126, 126] }
+                ]
+            });
+
+            // Votes change chart (Vertical bar chart)
+            Highcharts.chart('voteschange-chart', {
+                chart: { type: 'column' },
+                title: { text: 'Votes Change Over Time' },
+                xAxis: { categories: ["2025-01-04 20:50:00", "2025-01-04 21:00:00", "2025-01-04 21:10:01", "2025-01-04 21:20:01", "2025-01-04 21:30:01", "2025-01-04 21:40:01", "2025-01-04 21:50:01", "2025-01-04 22:00:00", "2025-01-04 22:10:00", "2025-01-04 22:20:00", "2025-01-04 22:30:00", "2025-01-04 22:40:01", "2025-01-04 22:50:01", "2025-01-04 23:00:01", "2025-01-04 23:10:01", "2025-01-04 23:20:01", "2025-01-04 23:30:01", "2025-01-04 23:40:00", "2025-01-04 23:50:00", "2025-01-05 00:00:01", "2025-01-05 00:10:01", "2025-01-05 00:20:01", "2025-01-05 00:30:00", "2025-01-05 00:40:00"] },
+                yAxis: { title: { text: 'Votes Change' } },
+                series: [
+                    { name: 'Upvotes Change', data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0] },
+                    { name: 'Downvotes Change', data: [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }
+                ]
+            });
+
+            // Upvotes percentage chart
+            Highcharts.chart('upvotespercentage-chart', {
+                chart: { type: 'line' },
+                title: { text: 'Upvotes Percentage Over Time' },
+                xAxis: { categories: ["2025-01-04 20:50:00", "2025-01-04 21:00:00", "2025-01-04 21:10:01", "2025-01-04 21:20:01", "2025-01-04 21:30:01", "2025-01-04 21:40:01", "2025-01-04 21:50:01", "2025-01-04 22:00:00", "2025-01-04 22:10:00", "2025-01-04 22:20:00", "2025-01-04 22:30:00", "2025-01-04 22:40:01", "2025-01-04 22:50:01", "2025-01-04 23:00:01", "2025-01-04 23:10:01", "2025-01-04 23:20:01", "2025-01-04 23:30:01", "2025-01-04 23:40:00", "2025-01-04 23:50:00", "2025-01-05 00:00:01", "2025-01-05 00:10:01", "2025-01-05 00:20:01", "2025-01-05 00:30:00", "2025-01-05 00:40:00"] },
+                yAxis: { title: { text: 'Upvotes Percentage' } },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.y:.3f}%</b>'
+                },
+                series: [{
+                    name: 'Upvotes Percentage',
+                    data: [90.34003091190108, 90.34003091190108, 90.27027027027027, 90.27027027027027, 90.27027027027027, 90.27027027027027, 90.27027027027027, 90.27027027027027, 90.27027027027027, 90.27027027027027, 90.27027027027027, 90.27027027027027, 90.27027027027027, 90.27027027027027, 90.27027027027027, 90.27027027027027, 90.26275115919628, 90.26275115919628, 90.26275115919628, 90.26275115919628, 90.26275115919628, 90.26275115919628, 90.26275115919628, 90.26275115919628]
+                }]
+            });
+        });
+    </script>
+</body>
+</html>
