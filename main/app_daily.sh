@@ -6,13 +6,7 @@ cd "$(dirname "$0")"
 python3 fetch_data_daily.py
 
 # Wait 1 minute to ensure data is fully fetched
-sleep 60
+sleep 10
 
 # Run generate_daily_html.py
 python3 generate_daily_html.py
-
-#start with 'crontab -e'
-
-#then add '0 12 * * * app_daily.sh'
-
-#stop with 'crontab -e' then remove the line above
